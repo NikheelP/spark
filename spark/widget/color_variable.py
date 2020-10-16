@@ -49,67 +49,9 @@ class COLOR_VARIABLE():
         
 
 
-
-
-
-
-    '''
-        #define default color layout
-        self._background_color = []
-        self._button_color = []
-            
-    #BACKGROUND COLOR
-    def set_background_color(self, value):
-        if not isinstance(value, list):
-            frame = inspect.currentframe()
-            function_name =  inspect.getframeinfo(frame).function
-            raise Exception(f'value is not a list please Define the List to {function_name}' )
-        
-        self._background_color = value
-        return self._background_color
-
-    def get_background_color(self):
-        \'''
-        return the background color
-        \'''
-        return self._background_color
-
-    #BUTTON COLOR
-    def set_button_color(self, value):
-        \'''
-        set button color value
-        @param value: value list
-        @type value: list
-        \'''
-        if not isinstance(value, list):
-            frame = inspect.currentframe()
-            function_name =  inspect.getframeinfo(frame).function
-            raise Exception(f'value is not a list please Define the List to {function_name}' )
-        
-        self._button_color = value
-        return self._button_color
-        
-
-    def get_button_color(self):
-        \'''
-        return the button color
-        \'''
-        return self._button_color
-
-    '''
-
-
 print('this is working now')
 color = COLOR_VARIABLE()
 background_color = color.get_background_color_var()
 background_color.set_color = [5, 6, 2]
 print(background_color.get_color())
 
-#color.set_background_color(['acae', 'aec', 'aec', 'asc'])
-#color.set_button_color([22, 22, 33, 55])
-
-#background_color = color.get_background_color()
-#button_color = color.get_button_color()
-
-#print(background_color)
-#print(button_color)
