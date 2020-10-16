@@ -1,4 +1,4 @@
-import inspect
+
 
 class COLOR_VARIABLE_CHILD():
     def __init__(self, value):
@@ -23,6 +23,15 @@ class COLOR_VARIABLE_CHILD():
 
     @set_color.setter
     def set_color(self, value):
+        '''
+        setting up the new value
+        @param value: list value
+        @type value: list
+
+        '''
+        if not isinstance(value, list):
+            raise Exception(f'value is not a list please Define the List')
+        
         self._color_value = value
         return self._color_value
     
