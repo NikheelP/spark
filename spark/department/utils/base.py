@@ -85,8 +85,11 @@ class BASE():
     def get_poition(self, obj_name):
         '''
         returh the position of the point, Transform 
-        
+
         '''
+        pass
+
+    def get_mPoint(self, obj_name):
         pass
 
 
