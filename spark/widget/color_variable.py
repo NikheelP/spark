@@ -5,7 +5,6 @@ class COLOR_VARIABLE_CHILD():
         if not isinstance(value, list):
             raise Exception(f'value is not a list please Define the List')
 
-
         self._color_value = value
     
     @property
@@ -35,10 +34,6 @@ class COLOR_VARIABLE_CHILD():
         self._color_value = value
         return self._color_value
     
-
-
-
-
 class COLOR_VARIABLE():
     '''
     this is the color variable which will be include all the related to color in the widget
