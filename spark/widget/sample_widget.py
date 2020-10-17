@@ -20,7 +20,9 @@ class SAMPLE_WIDGET(QMainWindow):
         self.show()
                 
     def initUI(self):
-        
+        '''
+        CREATE INITIAL UI
+        '''
         self.resize(self.width, self.height)
 
         #SET WINDOT TITLE
@@ -36,13 +38,9 @@ class SAMPLE_WIDGET(QMainWindow):
 
 
     def first_layout(self):
-        def moveWindow(event):
-            #IF LEFT MOUSE CLICK MOVE WINDOW
-            if event.buttons() == Qt.LeftButton:
-                self.move(self.pos() + event.globalPos() - self.dragPos)
-                self.dragPos = event.globalPos()
-                event.accept()
-
+        '''
+        FIRST LAYOUT WHICH HAS LABEL AND CLOSE, MAXIMIZE AND MINIMIZE WINDOW
+        '''
 
         #CENTRAL WIDGET
         self.central_widget = QWidget(self)
@@ -69,7 +67,7 @@ class SAMPLE_WIDGET(QMainWindow):
         self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.label.setWordWrap(False)
         self.label.setObjectName("label")
-        self.label.setText('UI Name')
+        self.label.setText(self.title)
         self.GridLayout.addWidget(self.label, 0, 0, 1, 1)
 
         #MINIMIZE
@@ -131,7 +129,7 @@ class SAMPLE_WIDGET(QMainWindow):
 
 
 class production_ui(SAMPLE_WIDGET):
-    def __init__(self, title='Another Sample', width=640, height=480):
+    def __init__(self, title='Production UI', width=640, height=480):
         super().__init__(title=title, width=width, height=height)
 
         self.update_ui()
