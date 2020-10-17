@@ -40,6 +40,10 @@ class COLOR_VARIABLE():
     can be get and set new value to change the widget color
     '''
     def __init__(self):
+        self.minimize_color = COLOR_VARIABLE_CHILD(value=[0, 255, 0])
+        self.maxmize_color = COLOR_VARIABLE_CHILD(value=[255, 255, 0])
+        self.close_color = COLOR_VARIABLE_CHILD(value=[255, 0, 0])
+
         self.background_color = COLOR_VARIABLE_CHILD(value=[])
         self.button_color = COLOR_VARIABLE_CHILD(value=[1 ,1 ,1])
 
@@ -50,12 +54,16 @@ class COLOR_VARIABLE():
     def get_button_color_var(self):
         return self.button_color
 
+    def get_minimize_color(self):
+        return self.minimize_color
+
+    def get_maxmize_color(self):
+        return self.maxmize_color
+
+    def get_close_color(self):
+        return self.close_color
+
         
 
 
-print('this is working now')
-color = COLOR_VARIABLE()
-background_color = color.get_background_color_var()
-background_color.set_color = [5, 6, 2]
-print(background_color.get_color())
 

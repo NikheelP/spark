@@ -1,14 +1,23 @@
 from spark.widget.import_module import *
+from spark.widget.widget_template import WIDGET_TEMPLATE
+from spark.widget.color_variable import COLOR_VARIABLE
 
+
+import sys
 
 class SAMPLE_WIDGET(QMainWindow):
 
     def __init__(self, title='Sample Title', width = 640, height=480):
         super().__init__()
-        
+
+        #EXTERNAL CLASS
+        self.widget_template_class = WIDGET_TEMPLATE()
+        self.color_variable_class = COLOR_VARIABLE()
+
         #SET WINDOW TITLE
         self.title = title
-        
+
+
         #SET WINDOW WIDTH AND HEIGHT
         self.width = width
         self.height = height
@@ -52,15 +61,13 @@ class SAMPLE_WIDGET(QMainWindow):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.verticalLayout.mouseMoveEvent = moveWindow
-        
+
         #PRODUCTION NAME
         self.GridLayout = QGridLayout()
         self.GridLayout.setHorizontalSpacing(5)
         self.GridLayout.setVerticalSpacing(0)
         self.GridLayout.setObjectName("GridLayout")
         
-
         #LABEL
         self.label = QLabel()
         self.label.setStyleSheet("color: rgb(0, 255, 0); font-size: 12pt; font-weight: bold;")
@@ -71,32 +78,34 @@ class SAMPLE_WIDGET(QMainWindow):
         self.GridLayout.addWidget(self.label, 0, 0, 1, 1)
 
         #MINIMIZE
-        self.minimize_pushButton = QPushButton(self.central_widget)
-        self.minimize_pushButton.setMinimumSize(QSize(20, 20))
-        self.minimize_pushButton.setMaximumSize(QSize(20, 20))
-        self.minimize_pushButton.setStyleSheet("background-color: rgb(0, 255, 0); border-radius: 10px;")
-        self.minimize_pushButton.setText("")
-        self.minimize_pushButton.setObjectName("minimize_pushButton")
+        val = self.color_variable_class.get_minimize_color().get_color()
+        mini_styleSheet = self.widget_template_class.styleSheet_def(obj_name='QPushButton',
+                                                                    background_color=val,
+                                                                    border_radius=10)
+        self.minimize_pushButton = self.widget_template_class.pushButton_def(MinSize = [20, 20],
+                                                                             MaxSize=[20, 20],
+                                                                             StyleSheet=mini_styleSheet)
         self.minimize_pushButton.clicked.connect(self.showMinimized)
         self.GridLayout.addWidget(self.minimize_pushButton, 0, 1, 1, 1)
 
         #MAXIMIZE
-        self.maximize_pushButton = QPushButton(self.central_widget)
-        self.maximize_pushButton.setMinimumSize(QSize(20, 20))
-        self.maximize_pushButton.setMaximumSize(QSize(20, 20))
-        self.maximize_pushButton.setStyleSheet("background-color: rgb(255, 255, 0); border-radius: 10px;")
-        self.maximize_pushButton.setText("")
-        self.maximize_pushButton.setObjectName("maximize_pushButton")
+        val = self.color_variable_class.get_maxmize_color().get_color()
+        max_styleSheet = self.widget_template_class.styleSheet_def(obj_name='QPushButton',
+                                                                   background_color=val,
+                                                                   border_radius=10)
+        self.maximize_pushButton = self.widget_template_class.pushButton_def(MinSize=[20, 20], MaxSize=[20, 20],
+                                                                             StyleSheet=max_styleSheet)
         self.maximize_pushButton.clicked.connect(self.maximize_pushButton_def)
         self.GridLayout.addWidget(self.maximize_pushButton, 0, 2, 1, 1)
 
         #CLOSE
-        self.close_pushButton = QPushButton(self.central_widget)
-        self.close_pushButton.setMinimumSize(QSize(21, 23))
-        self.close_pushButton.setMaximumSize(QSize(20, 20))
-        self.close_pushButton.setStyleSheet("background-color: rgb(255, 0, 0); border-radius: 10px;")
-        self.close_pushButton.setText("")
-        self.close_pushButton.setObjectName("close_pushButton")
+        val = self.color_variable_class.get_close_color().get_color()
+        close_styleSheet = self.widget_template_class.styleSheet_def(obj_name='QPushButton',
+                                                                     background_color=val,
+                                                                     border_radius=10)
+        self.close_pushButton = self.widget_template_class.pushButton_def(MinSize=[20, 20],
+                                                                          MaxSize=[20, 20],
+                                                                          StyleSheet=close_styleSheet)
         self.close_pushButton.clicked.connect(self.close)
         self.GridLayout.addWidget(self.close_pushButton, 0, 3, 1, 1)
 
@@ -116,10 +125,11 @@ class SAMPLE_WIDGET(QMainWindow):
             self.showMaximized()
 
     def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
+        if  self.isMaximized():
+            qr = self.frameGeometry()
+            cp = QDesktopWidget().availableGeometry().center()
+            qr.moveCenter(cp)
+            self.move(qr.topLeft())
 
     def mouseMoveEvent(self, event):
         delta = QPoint (event.globalPos() - self.oldPos)
@@ -128,32 +138,11 @@ class SAMPLE_WIDGET(QMainWindow):
         self.oldPos = event.globalPos()
 
 
-class production_ui(SAMPLE_WIDGET):
-    def __init__(self, title='Production UI', width=640, height=480):
-        super().__init__(title=title, width=width, height=height)
-
-        self.update_ui()
-
-
-    def update_ui(self):
-        layout_name = self.get_layout()
-        self.production_setup_gridLayout = QGridLayout()
-        self.production_setup_gridLayout.setSpacing(2)
-        self.production_setup_gridLayout.setObjectName("production_setup_gridLayout")
-
-
-
-        spacerItem2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-        self.production_setup_gridLayout.addItem(spacerItem2, 7, 0, 1, 3)
-
-        self.verticalLayout.addLayout(self.production_setup_gridLayout)
 
 
 
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = production_ui()
-    sys.exit(app.exec_())
+
+
 

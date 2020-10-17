@@ -1,7 +1,7 @@
 
 
 
-
+import sys
 #IMPORT MODULE ACCORDING TO REQUIREMENT
 try:
     #import pyqt5 moduler
