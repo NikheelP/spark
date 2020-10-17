@@ -4,3 +4,7 @@ image:
 tasks:
   - init: npm install
     command: npm install
+
+vscode:
+  extensions:
+    - tonka3000.qtvsctools@0.6.0:xwOUUBO2F0pL/JuxrvzPVw==
