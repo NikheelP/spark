@@ -87,7 +87,45 @@ class WIDGET_TEMPLATE():
                         border_right_color=[], border_bottom_color=[],
                         border_left_color=[], gridline_color=[], selection_background_color=[], selection_color=[]):
 
+        '''
+        Specify the StyhleSheet 
+
+        @param obj_name : specify the object name in string
+        @type obj_name: str
+
+        @param color : specify the color in list
+        @type color: list
+
+        @param background_color : specify the baclkground color in list
+        @type background_color: list
+
+        @param alternate_background_color : specify the alternate background color
+        @type alternate_background_color: list
+
+        @param border_color : specify the border color in list
+        @type border_color: list
+
+        @param border_top_color : specify the border top color in list
+        @type border_top_color: list
+
+        @param border_right_color : specify the border right color in list
+        @type border_right_color: list
+
+        @param border_bottom_color : specify the border bottom color in list
+        @type border_bottom_color: list
+
+        @param border_left_color : specify the boirder left color in list
+        @type border_left_color: list
+
+        @param gridline_color : specify the gridline color in list
+        @type gridline_color: list
         
+        @param selection_background_color : specify the selection background color in list
+        @type selection_background_color: list
+
+        @param selection_color : specify the selection color in list
+        @type selection_color: list
+        '''
 
 
         #SPECIFY THE START OF THE COLOR
